@@ -1,7 +1,8 @@
+package MCOO_Project;
 import java.util.ArrayList;
 
 /**
- * Created by rhine on 03/02/16.
+ * Created by Célia Dehors & Benjamin Goodwin on 03/02/16.
  */
 public class Etat implements Tomate {
     public String nom;
@@ -11,11 +12,22 @@ public class Etat implements Tomate {
     public ArrayList<Automate> sousAutomates;
     //TODO? automate dont je suis actif
 
-    public Etat(String nom, boolean initial, boolean finalState, Automate automate, ArrayList<Automate> sousAutomates) {
+    public Etat(String nom, boolean initial, boolean finalState, Automate automate) {
         this.nom = nom;
         this.initial = initial;
         this.finalState = finalState;
         this.automate = automate;
+    }
+
+    public Etat(String nom, boolean initial, boolean finalState) {
+        this.nom = nom;
+        this.initial = initial;
+        this.finalState = finalState;
+
+    }
+
+    public Etat(Automate automate, ArrayList<Automate> sousAutomates) {
+        this.automate=automate;
         this.sousAutomates = sousAutomates;
     }
 

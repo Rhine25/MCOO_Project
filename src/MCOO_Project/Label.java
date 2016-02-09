@@ -1,7 +1,8 @@
+package MCOO_Project;
 import java.util.ArrayList;
 
 /**
- * Created by rhine on 03/02/16.
+ * Created by Célia Dehors & Benjamin Goodwin on 03/02/16.
  */
 public class Label {
     public String etiquette;
@@ -10,5 +11,9 @@ public class Label {
     public Label(String etiquette, ArrayList<Transition> labeledTransitions) {
         this.etiquette = etiquette;
         this.labeledTransitions = labeledTransitions;
+    }
+
+    public Label(String etiquette) {
+        this.etiquette = etiquette;
     }
 }

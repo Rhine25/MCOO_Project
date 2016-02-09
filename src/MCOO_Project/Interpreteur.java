@@ -1,5 +1,7 @@
+package MCOO_Project;
+
 /**
- * Created by rhine on 03/02/16.
+ * Created by Célia Dehors & Benjamin Goodwin on 03/02/16.
  */
 public class Interpreteur implements VisiteurTomate{
     private static Interpreteur INSTANCE = null;
