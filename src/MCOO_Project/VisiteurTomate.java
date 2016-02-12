@@ -7,4 +7,5 @@ public interface VisiteurTomate {
 
     Object visit(Automate a);
     Object visit(Etat e);
+
 }

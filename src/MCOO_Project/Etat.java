@@ -10,7 +10,21 @@ public class Etat implements Tomate {
     public boolean finalState;
     public Automate automate;
     public ArrayList<Automate> sousAutomates;
+    public ArrayList<Transition> incoming;
+    public ArrayList<Transition> departing;
+
     //TODO? automate dont je suis actif
+
+
+    public Etat(String nom, boolean initial, boolean finalState, Automate automate, ArrayList<Automate> sousAutomates, ArrayList<Transition> incoming, ArrayList<Transition> departing) {
+        this.nom = nom;
+        this.initial = initial;
+        this.finalState = finalState;
+        this.automate = automate;
+        this.sousAutomates = sousAutomates;
+        this.incoming = incoming;
+        this.departing = departing;
+    }
 
     public Etat(String nom, boolean initial, boolean finalState, Automate automate) {
         this.nom = nom;
