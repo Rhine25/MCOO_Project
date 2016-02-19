@@ -27,6 +27,7 @@ public class Automate implements Tomate {
 
     @Override
     public String toString(){
+        //TODO afficher l'etat actif
         String res="";
         Iterator iterator = etats.iterator();
         if(iterator.hasNext()) {

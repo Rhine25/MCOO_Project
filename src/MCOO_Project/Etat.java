@@ -1,5 +1,6 @@
 package MCOO_Project;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Created by Célia Dehors & Benjamin Goodwin on 03/02/16.
@@ -60,5 +61,16 @@ public class Etat implements Tomate {
     @Override
     public Object accept(VisiteurTomate vt) {
         return vt.visit(this); //return ?
+    }
+
+    public String toString(){
+
+        String s = "";
+        Iterator<Transition> i = departing.iterator();
+        while(i.hasNext()){
+            Transition tmp = i.next();
+            s += tmp.etiquette + "->" + tmp.cible.nom + "\n";
+        }
+        return s;
     }
 }

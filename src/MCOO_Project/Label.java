@@ -16,4 +16,8 @@ public class Label {
     public Label(String etiquette) {
         this.etiquette = etiquette;
     }
+
+    public String toString(){
+        return etiquette;
+    }
 }
