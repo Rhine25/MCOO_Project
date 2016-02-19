@@ -29,12 +29,12 @@ public class Validateur implements VisiteurTomate{
         while(i.hasNext()){
             Etat tmp = i.next();
 
-            //checking one initial state
+            //checking single initial state
             if(tmp.initial) {
                 nbInitial++;
             }
+            //checking at least one incoming transition if non initial
             else{
-                //checking at least one incoming transition if non initial
                 if(tmp.incoming.isEmpty()){
                     errors.add("Etat non accessible et non initial");
                 }
@@ -45,16 +45,26 @@ public class Validateur implements VisiteurTomate{
                 errors.add("Etat puits non final");
             }
 
-            //TODO checking determinism
-
-
             Iterator<Etat> i2 = i;
             while (i2.hasNext()){
                 Etat tmp2 = i2.next();
 
                 //checking name duplicates
                 if(tmp2.nom.compareTo(tmp.nom) == 0){
-                    errors.add("Deux etats s'appellent " + tmp.nom);
+                    errors.add("Deux etats ont le nom " + tmp.nom);
+                }
+            }
+
+            Iterator<Transition> it = i.next().departing.iterator();
+            while(it.hasNext()){
+                Transition tmpTransition = it.next();
+                Iterator<Transition> it2 = it;
+                while(it2.hasNext()){
+                    Transition tmpTransition2 = it2.next();
+                    //checking determinism
+                    if(tmpTransition2.etiquette == tmpTransition.etiquette){
+                        errors.add("Non déterministe");
+                    }
                 }
             }
         }
