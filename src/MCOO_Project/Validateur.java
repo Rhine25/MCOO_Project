@@ -23,39 +23,43 @@ public class Validateur implements VisiteurTomate{
     }
 
     public Object visit(Automate a){
-
+        System.out.println(a);
+        System.out.println(a.etats.size());
+        int c=0;
         int nbInitial = 0;
         Iterator<Etat> i = a.etats.iterator();
+        Iterator<Etat> i2 = a.etats.iterator();
         while(i.hasNext()){
+            System.out.println("c : " + c);
+            c=c+1;
             Etat tmp = i.next();
-
+            Etat tmp2;
+            if (i2.hasNext()) {
+                tmp2 = i2.next();
+            }
             //checking single initial state
             if(tmp.initial) {
                 nbInitial++;
             }
             //checking at least one incoming transition if non initial
-            else{
-                if(tmp.incoming.isEmpty()){
+            else {
+                if (tmp.incoming.isEmpty()) {
                     errors.add("Etat non accessible et non initial");
                 }
             }
-
             //checking final if no departing transition
             if(tmp.departing.isEmpty() && !tmp.finalState){
                 errors.add("Etat puits non final");
             }
 
-            Iterator<Etat> i2 = i;
             while (i2.hasNext()){
-                Etat tmp2 = i2.next();
-
+                tmp2 = i2.next();
                 //checking name duplicates
                 if(tmp2.nom.compareTo(tmp.nom) == 0){
                     errors.add("Deux etats ont le nom " + tmp.nom);
                 }
             }
-
-            Iterator<Transition> it = i.next().departing.iterator();
+            Iterator<Transition> it = tmp.departing.iterator();
             while(it.hasNext()){
                 Transition tmpTransition = it.next();
                 Iterator<Transition> it2 = it;
@@ -75,8 +79,7 @@ public class Validateur implements VisiteurTomate{
         else if(nbInitial > 1){
             errors.add("Il y a trop d'états initiaux");
         }
-
-        return a.accept(this);
+        return errors/*a.accept(this)*/;
     }
 
     public Object visit(Etat e){
