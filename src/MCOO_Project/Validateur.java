@@ -11,7 +11,7 @@ public class Validateur implements VisiteurTomate{
 
     private ArrayList<String> errors;
 
-    public Validateur() {
+    private Validateur() {
         this.errors = new ArrayList<>();
     }
 

@@ -31,9 +31,9 @@ public class Main {
 
         Automate a = new Automate(etats, transitions, un);
 
-        Object o = a.accept(new Validateur());
+        Object o = a.accept(Validateur.getINSTANCE());
         System.out.println(o);
 
-        a.accept(new Executeur());
+        a.accept(Executeur.getINSTANCE());
     }
 }
