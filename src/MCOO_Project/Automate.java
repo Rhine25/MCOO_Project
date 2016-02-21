@@ -27,7 +27,6 @@ public class Automate implements Tomate {
 
     @Override
     public String toString(){
-        //TODO afficher l'etat actif
         String res="";
         Iterator iterator = etats.iterator();
         if(iterator.hasNext()) {
@@ -42,12 +41,13 @@ public class Automate implements Tomate {
                 res += ".\n";
             }
         }
+
         iterator = transitions.iterator();
         while(iterator.hasNext()){
             Transition tmp = (Transition)iterator.next();
-            res += "Transitions de l'état : '" + tmp.source.nom + "' à l'état : '" + tmp.cible.nom + "' with the letter '"
-                    + tmp.etiquette.etiquette + "'\n";
+            res += tmp.source.nom + " " + tmp.etiquette.etiquette + "-> "+tmp.cible.nom+"\n";
         }
+        res += "Etat Actif : "+activeState.nom+"\n";
         return res;
     }
 

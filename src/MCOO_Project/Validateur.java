@@ -24,13 +24,9 @@ public class Validateur implements VisiteurTomate{
 
     public Object visit(Automate a){
 
-        int c = 0;
         int nbInitial = 0;
         Iterator<Etat> i = a.etats.iterator();
         while(i.hasNext()){
-
-            System.out.println("c : " + c);
-            c ++;
 
             Etat tmp = i.next();
 

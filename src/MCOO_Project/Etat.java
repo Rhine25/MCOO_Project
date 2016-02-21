@@ -69,7 +69,7 @@ public class Etat implements Tomate {
         Iterator<Transition> i = departing.iterator();
         while(i.hasNext()){
             Transition tmp = i.next();
-            s += tmp.etiquette + "->" + tmp.cible.nom + "\n";
+            s += tmp.etiquette + "-> " + tmp.cible.nom + "\n";
         }
         return s;
     }
