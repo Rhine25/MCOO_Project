@@ -8,13 +8,16 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
+        //TODO méthodes pour créer un automate facilement
+        //TODO plusieurs automates précréés avec options pour lequel créer
+        //TODO trier les transitions par nom d'état source
 
         //Etats
         Etat un = new Etat("1", true, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
         Etat deux = new Etat("2", false, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
         Etat trois = new Etat("3", false, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
-        Etat quatre = new Etat("4", false, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
-        Etat cinq = new Etat("5", false, true, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
+        Etat quatre = new Etat("4", false, true, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
+        Etat cinq = new Etat("5", false, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
 
         //Transition
         Label labela = new Label("a");
@@ -67,12 +70,13 @@ public class Main {
         transitions.add(troisTOquatre);
         transitions.add(troisTOcinq);
         transitions.add(cinqTOquatre);
+        //transitions.sort();
 
 
         Automate a = new Automate(etats, transitions, un);
 
         Object o = a.accept(Validateur.getINSTANCE());
-        System.out.println(o);
+        System.out.println("Erreur(s) : " + o);
 
         a.accept(Executeur.getINSTANCE());
     }

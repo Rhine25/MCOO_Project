@@ -23,33 +23,29 @@ public class Executeur implements VisiteurTomate{
     }
 
     public Object visit(Automate a){
-        Scanner sc = new Scanner(System.in);
-        Iterator<Transition> i = a.activeState.departing.iterator();
 
+        Scanner sc = new Scanner(System.in);
+        String str;
+        Iterator<Transition> i = a.activeState.departing.iterator();
         Transition tmp;
-        boolean transitionPassed = false;
-        boolean wrongChoice = true;
-        while(!transitionPassed) {
-            if (i.hasNext()) {
-                System.out.println(a.toString());
-                System.out.println("Transitions disponibles :\n" + a.activeState + "\nQuelle transition prendre ? : ");
-                tmp = i.next();
-                String str = "";
-                while (i.hasNext() && !tmp.etiquette.etiquette.equals(str)) {
+
+        while(!a.activeState.finalState){ //TODO gérer si des transitions sont possibles à partir de l'état final
+            System.out.println(a);
+            System.out.println("Transitions disponibles :\n" + a.activeState + "\nQuelle transition prendre ? : ");
+            str = sc.nextLine();
+            tmp = i.next();
+            while(!tmp.etiquette.etiquette.equals(str)){
+                if(i.hasNext()){
                     tmp = i.next();
                 }
-                while (wrongChoice) {
+                else{ //transition asked for didn't exist
+                    System.out.println("Veuillez choisir une transition existante parmis : " + a.activeState + "\n");
                     str = sc.nextLine();
-                    if (tmp.etiquette.etiquette.equals(str)) {
-                        a.activeState = tmp.cible;
-                        wrongChoice = false;
-                    } else {
-                        System.out.println("La transition que vous avez demandée n'existe pas. Transitions disponibles :\n" + a.activeState + "\nRefaites un choix : ");
-                    }
+                    i = a.activeState.departing.iterator();
                 }
-            } else {
-                System.out.println("Vous êtes sur un état final");
             }
+            a.activeState = tmp.cible;
+            i = a.activeState.departing.iterator();
         }
         return true;
     }

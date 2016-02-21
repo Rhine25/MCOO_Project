@@ -30,7 +30,7 @@ public class Automate implements Tomate {
         String res="";
         Iterator iterator = etats.iterator();
         if(iterator.hasNext()) {
-            res += "Etat(s) : ";
+            res += "Etat(s) : \n";
         }
         while(iterator.hasNext()){
             Etat tmp = (Etat)iterator.next();
@@ -43,6 +43,7 @@ public class Automate implements Tomate {
         }
 
         iterator = transitions.iterator();
+        res += "Transitions : \n";
         while(iterator.hasNext()){
             Transition tmp = (Transition)iterator.next();
             res += tmp.source.nom + " " + tmp.etiquette.etiquette + "-> "+tmp.cible.nom+"\n";
