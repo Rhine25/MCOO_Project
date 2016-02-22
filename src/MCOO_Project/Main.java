@@ -8,76 +8,72 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        //TODO méthodes pour créer un automate facilement
         //TODO plusieurs automates précréés avec options pour lequel créer
         //TODO trier les transitions par nom d'état source
 
+        ArrayList<Etat> etats = new ArrayList<>();
+        ArrayList<Transition> transitions = new ArrayList<>();
+
         //Etats
-        Etat un = new Etat("1", true, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
-        Etat deux = new Etat("2", false, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
-        Etat trois = new Etat("3", false, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
-        Etat quatre = new Etat("4", false, true, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
-        Etat cinq = new Etat("5", false, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
+        Etat un = createState("1", "initial", etats);
+        Etat deux = createState("2", etats);
+        Etat trois = createState("3", etats);
+        Etat quatre = createState("4","final", etats);
+        Etat cinq = createState("5", etats);
 
-        //Transition
-        Label labela = new Label("a");
-        Label labelb = new Label("b");
-        Label labelc = new Label("c");
+        //Terminaux
+        Label a = new Label("a");
+        Label b = new Label("b");
+        Label c = new Label("c");
 
-        Transition unTOdeux = new Transition(labela, un, deux);
-        un.departing.add(unTOdeux);
-        deux.incoming.add(unTOdeux);
-
-        Transition deuxTOtrois = new Transition(labela, deux, trois);
-        deux.departing.add(deuxTOtrois);
-        trois.incoming.add(deuxTOtrois);
-
-        Transition troisTOun = new Transition(labela, trois, un);
-        trois.departing.add(troisTOun);
-        un.incoming.add(troisTOun);
-
-        Transition quatreTOquatre = new Transition(labela, quatre, quatre);
-        quatre.departing.add(quatreTOquatre);
-        quatre.incoming.add(quatreTOquatre);
-
-        Transition troisTOquatre = new Transition(labelb, trois, quatre);
-        trois.departing.add(troisTOquatre);
-        quatre.incoming.add(troisTOquatre);
-
-        Transition troisTOcinq = new Transition(labelc, trois, cinq);
-        trois.departing.add(troisTOcinq);
-        cinq.incoming.add(troisTOcinq);
-
-        Transition cinqTOquatre = new Transition(labela, cinq, quatre);
-        cinq.departing.add(cinqTOquatre);
-        quatre.incoming.add(cinqTOquatre);
-
+        //Transitions
+        Transition unTOdeux = createTransition(a, un, deux, transitions);
+        Transition deuxTOtrois = createTransition(a, deux, trois, transitions);
+        Transition troisTOun = createTransition(a, trois, un, transitions);
+        Transition quatreTOquatre = createTransition(a, quatre, quatre, transitions);
+        Transition troisTOquatre = createTransition(b, trois, quatre, transitions);
+        Transition troisTOcinq = createTransition(c, trois, cinq, transitions);
+        Transition cinqTOquatre = createTransition(a, cinq, quatre, transitions);
 
         //Automate
-            //ses etats
-        ArrayList<Etat> etats = new ArrayList<>();
-        etats.add(un);
-        etats.add(deux);
-        etats.add(trois);
-        etats.add(quatre);
-        etats.add(cinq);
-            //ses transitions
-        ArrayList<Transition> transitions = new ArrayList<>();
-        transitions.add(unTOdeux);
-        transitions.add(deuxTOtrois);
-        transitions.add(troisTOun);
-        transitions.add(quatreTOquatre);
-        transitions.add(troisTOquatre);
-        transitions.add(troisTOcinq);
-        transitions.add(cinqTOquatre);
-        //transitions.sort();
+        Automate auto = createAutomate(etats, transitions, un);
 
-
-        Automate a = new Automate(etats, transitions, un);
-
-        Object o = a.accept(Validateur.getINSTANCE());
+        Object o = auto.accept(Validateur.getINSTANCE());
         System.out.println("Erreur(s) : " + o);
 
-        a.accept(Executeur.getINSTANCE());
+        auto.accept(Executeur.getINSTANCE());
+    }
+
+    private static Etat createState(String nom, ArrayList<Etat> etats){
+        return createState(nom, "", etats);
+    }
+    private static Etat createState(String nom, String iniFin, ArrayList<Etat> etats){
+        Etat etat;
+        if(iniFin.equals("initial")){
+            etat = new Etat(nom, true, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
+        }
+        else if(iniFin.equals("final")){
+            etat =  new Etat(nom, false, true, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
+        }
+        else if(iniFin.equals("initial final")){
+            etat =  new Etat(nom, true, true, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
+        }
+        else{
+            etat = new Etat(nom, false, false, new ArrayList<Automate>(), new ArrayList<Transition>(), new ArrayList<Transition>());
+        }
+        etats.add(etat);
+        return etat;
+    }
+
+    private static Transition createTransition(Label label, Etat source, Etat cible, ArrayList<Transition> transitions){
+        Transition transition = new Transition(label, source, cible);
+        source.departing.add(transition);
+        cible.incoming.add(transition);
+        transitions.add(transition);
+        return transition;
+    }
+
+    private static Automate createAutomate(ArrayList<Etat> etats, ArrayList<Transition> transitions, Etat activeState){
+        return new Automate(etats, transitions, activeState);
     }
 }
