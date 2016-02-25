@@ -47,6 +47,7 @@ public class Executeur implements VisiteurTomate{
             a.activeState = tmp.cible;
             i = a.activeState.departing.iterator();
         }
+        System.out.println("Vous etes arriver sur un etat final");
         return true;
     }
 
