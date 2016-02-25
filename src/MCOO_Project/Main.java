@@ -9,9 +9,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        //TODO plusieurs automates précréés avec options pour lequel créer
-        //TODO trier les transitions par nom d'état source
-
 
         ArrayList<Etat> etats = new ArrayList<>();
         ArrayList<Transition> transitions = new ArrayList<>();
@@ -32,9 +29,10 @@ public class Main {
                 "\n (3) Automate avec Etat puits sans final" +
                 "\n (4) Automate avec Etat Final non accesible" +
                 "\n (5) Automate avec Automate non deterministe" +
-                "\n (6) Automate avec Etat possedant le meme nom";
+                "\n (6) Automate avec Etat possedant le meme nom" +
+                "\n : ";
         Scanner sc = new Scanner(System.in);
-        System.out.println(question);
+        System.out.print(question);
         String res = sc.nextLine();
         Automate auto;
         Object o;
@@ -53,10 +51,10 @@ public class Main {
                     //Transitions
                     Transition unTOdeux1 = createTransition(a, un, deux, transitions);
                     Transition deuxTOtrois1 = createTransition(b, deux, trois, transitions);
+                    Transition deuxTOquatre1 = createTransition(c, deux, quatre, transitions);
                     Transition troisTOtrois1 = createTransition(a, trois, trois, transitions);
                     Transition troisTOquatre1 = createTransition(c, trois, quatre, transitions);
                     Transition quatreTOdeux1 = createTransition(a, quatre, deux, transitions);
-                    Transition deuxTOquatre1 = createTransition(c, deux, quatre, transitions);
 
                     //Automate
                     auto = createAutomate(etats, transitions, un);
@@ -165,7 +163,7 @@ public class Main {
                     auto.accept(Executeur.getINSTANCE());
                     break;
                 default :
-                    System.out.println(question);
+                    System.out.print(question);
                     res = sc.nextLine();
             }
         }

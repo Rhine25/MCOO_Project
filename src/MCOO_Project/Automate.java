@@ -58,7 +58,7 @@ public class Automate implements Tomate {
     }
 
     public boolean initialiser(){
-        // TODO faire le viviteur + retourner true si c'est vrai.
+        // TODO faire le validateur + retourner true si c'est vrai.
         return false;
     }
 }
