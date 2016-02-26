@@ -6,7 +6,7 @@ import java.util.Iterator;
  * Created by Célia Dehors & Benjamin Goodwin on 03/02/16.
  */
 public class Automate implements Tomate {
-    public ArrayList<Etat> etats; //TODO exactly one initial state
+    public ArrayList<Etat> etats;
     public ArrayList<Transition> transitions;
     public Etat activeState;
 
@@ -58,7 +58,7 @@ public class Automate implements Tomate {
     }
 
     public boolean initialiser(){
-        // TODO faire le validateur + retourner true si c'est vrai.
+        //On sait pas
         return false;
     }
 }

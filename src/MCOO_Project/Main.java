@@ -60,9 +60,12 @@ public class Main {
                     auto = createAutomate(etats, transitions, un);
 
                     o = auto.accept(Validateur.getINSTANCE());
-                    System.out.println("Erreur(s) : " + o);
-
-                    auto.accept(Executeur.getINSTANCE());
+                    ArrayList<String> errors1 = (ArrayList)o;
+                    if(!errors1.isEmpty()){
+                        System.out.println("Erreur(s) : " + o);
+                    }else{
+                        auto.accept(Executeur.getINSTANCE());
+                    }
                     break;
                 case "2":
                     choiceOK = true;
@@ -79,9 +82,12 @@ public class Main {
                     auto = createAutomate(etats, transitions, un);
 
                     o = auto.accept(Validateur.getINSTANCE());
-                    System.out.println("Erreur(s) : " + o);
-
-                    auto.accept(Executeur.getINSTANCE());
+                    ArrayList<String> errors2 = (ArrayList)o;
+                    if(!errors2.isEmpty()){
+                        System.out.println("Erreur(s) : " + o);
+                    }else{
+                        auto.accept(Executeur.getINSTANCE());
+                    }
                     break;
                 case "3":
                     choiceOK = true;
@@ -98,9 +104,12 @@ public class Main {
                     auto = createAutomate(etats, transitions, un);
 
                     o = auto.accept(Validateur.getINSTANCE());
-                    System.out.println("Erreur(s) : " + o);
-
-                    auto.accept(Executeur.getINSTANCE());
+                    ArrayList<String> errors3 = (ArrayList)o;
+                    if(!errors3.isEmpty()){
+                        System.out.println("Erreur(s) : " + o);
+                    }else{
+                        auto.accept(Executeur.getINSTANCE());
+                    }
                     break;
                 case "4":
                     choiceOK = true;
@@ -111,15 +120,18 @@ public class Main {
 
                     //Transitions
                     Transition unTOdeux4 = createTransition(a, un, deux, transitions);
-                    Transition deuxTOtrois4 = createTransition(b, deux, trois, transitions);
+                    Transition deuxTOdeux4 = createTransition(b, deux, deux, transitions);
 
                     //Automate
                     auto = createAutomate(etats, transitions, un);
 
                     o = auto.accept(Validateur.getINSTANCE());
-                    System.out.println("Erreur(s) : " + o);
-
-                    auto.accept(Executeur.getINSTANCE());
+                    ArrayList<String> errors4 = (ArrayList)o;
+                    if(!errors4.isEmpty()){
+                        System.out.println("Erreur(s) : " + o);
+                    }else{
+                        auto.accept(Executeur.getINSTANCE());
+                    }
                     break;
                 case "5":
                     choiceOK = true;
@@ -139,9 +151,12 @@ public class Main {
                     auto = createAutomate(etats, transitions, un);
 
                     o = auto.accept(Validateur.getINSTANCE());
-                    System.out.println("Erreur(s) : " + o);
-
-                    auto.accept(Executeur.getINSTANCE());
+                    ArrayList<String> errors5 = (ArrayList)o;
+                    if(!errors5.isEmpty()){
+                        System.out.println("Erreur(s) : " + o);
+                    }else{
+                        auto.accept(Executeur.getINSTANCE());
+                    }
                     break;
                 case "6":
                     choiceOK = true;
@@ -158,9 +173,12 @@ public class Main {
                     auto = createAutomate(etats, transitions, un);
 
                     o = auto.accept(Validateur.getINSTANCE());
-                    System.out.println("Erreur(s) : " + o);
-
-                    auto.accept(Executeur.getINSTANCE());
+                    ArrayList<String> errors6 = (ArrayList)o;
+                    if(!errors6.isEmpty()){
+                        System.out.println("Erreur(s) : " + o);
+                    }else{
+                        auto.accept(Executeur.getINSTANCE());
+                    }
                     break;
                 default :
                     System.out.print(question);

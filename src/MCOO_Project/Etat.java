@@ -14,8 +14,6 @@ public class Etat implements Tomate {
     public ArrayList<Transition> incoming;
     public ArrayList<Transition> departing;
 
-    //TODO? automate dont je suis actif
-
 
     public Etat(String nom, boolean initial, boolean finalState, Automate automate, ArrayList<Automate> sousAutomates, ArrayList<Transition> incoming, ArrayList<Transition> departing) {
         this.nom = nom;

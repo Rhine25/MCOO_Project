@@ -39,7 +39,7 @@ public class Executeur implements VisiteurTomate{
                     tmp = i.next();
                 }
                 else{ //transition asked for didn't exist
-                    System.out.println("Veuillez choisir une transition existante parmis : " + a.activeState + "\n");
+                    System.out.println("Veuillez choisir une transition existante parmis :\n" + a.activeState + "\n");
                     str = sc.nextLine();
                     i = a.activeState.departing.iterator();
                 }
